@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Insurance Quotes — Home</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #1a1d23; --muted: #5b6572;
+    --border: #e2e5ea; --accent: #2456d1; --good: #1a8f4c; --warn: #b8790a; --bad: #c23b3b;
+    --head-bg: #eef1f6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#14161a; --card:#1d2025; --text:#e8eaed; --muted:#9aa3af; --border:#30343b; --accent:#7ea2ff; --good:#4fbf7a; --warn:#e0a53a; --bad:#e06868; --head-bg:#24272e; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:32px; background:var(--bg); color:var(--text); font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; line-height:1.5; }
+  h1 { font-size:1.6rem; margin-bottom:4px; }
+  .subtitle { color:var(--muted); margin-bottom:24px; font-size:0.95rem; }
+  h2 { font-size:1.2rem; margin-top:36px; border-bottom:2px solid var(--accent); padding-bottom:6px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:20px 24px; margin-bottom:20px; }
+  table { width:100%; border-collapse:collapse; margin:12px 0; font-size:0.92rem; }
+  th, td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--border); vertical-align:top; }
+  th { background:var(--head-bg); font-weight:600; }
+  tr:last-child td { border-bottom:none; }
+  .num { text-align:right; white-space:nowrap; }
+  .tag { display:inline-block; padding:2px 8px; border-radius:20px; font-size:0.76rem; font-weight:600; white-space:nowrap; }
+  .tag-good { background:rgba(26,143,76,0.15); color:var(--good); }
+  .tag-warn { background:rgba(184,121,10,0.15); color:var(--warn); }
+  .tag-bad { background:rgba(194,59,59,0.15); color:var(--bad); }
+  .meta { color:var(--muted); font-size:0.85rem; }
+  footer { margin-top:36px; color:var(--muted); font-size:0.8rem; }
+
+  /* Global nav */
+  .gnav { position:relative; display:flex; align-items:center; gap:12px; margin-bottom:24px; padding:10px 14px; background:var(--card); border:1px solid var(--border); border-radius:10px; }
+  .gnav-brand { font-weight:700; font-size:0.95rem; }
+  .gnav-toggle { display:flex; flex-direction:column; justify-content:center; gap:4px; width:34px; height:34px; background:transparent; border:1px solid var(--border); border-radius:6px; cursor:pointer; padding:7px; }
+  .gnav-toggle span { display:block; height:2px; width:100%; background:var(--text); border-radius:2px; }
+  .gnav-menu { display:none; position:absolute; top:calc(100% + 6px); left:14px; min-width:230px; background:var(--card); border:1px solid var(--border); border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.2); padding:8px; flex-direction:column; gap:2px; z-index:50; }
+  .gnav-menu.open { display:flex; }
+  .gnav-menu a { color:var(--muted); text-decoration:none; padding:8px 12px; border-radius:6px; font-size:0.9rem; font-weight:600; }
+  .gnav-menu a:hover { background:var(--head-bg); color:var(--text); }
+  .gnav-menu a.active { background:rgba(36,86,209,0.15); color:var(--accent); }
+  .gnav-divider { height:1px; background:var(--border); margin:6px 4px; }
+
+  /* Hub cards */
+  .hub-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:18px; margin-top:16px; }
+  .hub-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:22px; text-decoration:none; color:var(--text); display:flex; flex-direction:column; gap:8px; transition:border-color 0.15s, transform 0.15s; }
+  .hub-card:hover { border-color:var(--accent); transform:translateY(-2px); }
+  .hub-card .icon { font-size:1.6rem; }
+  .hub-card h3 { margin:0; font-size:1.05rem; color:var(--accent); }
+  .hub-card p { margin:0; color:var(--muted); font-size:0.88rem; line-height:1.5; }
+</style>
+</head>
+<body>
+
+<nav class="gnav">
+  <button class="gnav-toggle" aria-label="Toggle navigation" onclick="document.getElementById('gnav-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="gnav-brand">Insurance Quotes</div>
+  <div class="gnav-menu" id="gnav-menu">
+    <a href="index.html" class="active">Home</a>
+    <a href="Quote Comparison.html">Quote Comparison</a>
+    <a href="Quote Request Log.html">Request Log</a>
+    <a href="Full Terms Data Bank.html">Full Terms Data Bank</a>
+    <div class="gnav-divider"></div>
+    <a href="Asher.html">Asher</a>
+    <a href="Cider Mill.html">Cider Mill</a>
+    <a href="Birgham.html">Birgham</a>
+  </div>
+</nav>
+<script>
+document.addEventListener('click', function(e){
+  var nav = document.querySelector('.gnav');
+  var menu = document.getElementById('gnav-menu');
+  if(nav && menu && !nav.contains(e.target)){ menu.classList.remove('open'); }
+});
+</script>
+
+<h1>Insurance Quotes — Project Home</h1>
+<div class="subtitle">3 Florida properties · quote shopping started Jul 8, 2026 · pages last synced Jul 13, 2026</div>
+
+<div class="card">
+<h2 style="margin-top:0; border:none;">At a glance</h2>
+<table>
+<tr><th>Property</th><th>Status</th><th class="num">Current premium</th><th>Cheapest option</th><th>Best-value pick</th></tr>
+<tr>
+  <td><strong>Asher</strong><br><span class="meta">Orlando · primary residence</span></td>
+  <td><span class="tag tag-warn">Active, up for renewal</span></td>
+  <td class="num">$4,660 (Slide)</td>
+  <td>GreatFlorida – Mangrove, $2,375 <span class="meta">(lower dwelling limit, no sinkhole)</span></td>
+  <td>Rigetta – CORE, $3,463</td>
+</tr>
+<tr>
+  <td><strong>Cider Mill</strong><br><span class="meta">Lake Mary · rental (the LLC)</span></td>
+  <td><span class="tag tag-warn">Active, prior term expired</span></td>
+  <td class="num">$5,378 (Slide)</td>
+  <td>GreatFlorida – Tower Hill, $1,988 <span class="meta">(excludes water damage &amp; sinkhole)</span></td>
+  <td>Rigetta – Orange, $2,981</td>
+</tr>
+<tr>
+  <td><strong>Birgham</strong><br><span class="meta">Lake Mary · rental (the LLC)</span></td>
+  <td><span class="tag tag-bad">Uninsured since ~2022</span></td>
+  <td class="num">—</td>
+  <td>GreatFlorida – American Integrity, $1,715 <span class="meta">(DP1 basic form, no contents)</span></td>
+  <td>Rigetta – Geovera, $3,365 (vs. Citizens $4,190, terms pending)</td>
+</tr>
+</table>
+<p class="meta">A daily scheduled check runs through Wednesday, Jul 15, 2026 to fold in new quotes as they arrive and keep these pages current.</p>
+</div>
+
+<h2>Pages in this project</h2>
+<div class="hub-grid">
+  <a class="hub-card" href="Quote Comparison.html">
+    <span class="icon">📊</span>
+    <h3>Quote Comparison</h3>
+    <p>Premium, coverage, and risk comparison per property — current declarations vs. every new quote, with a recommendation and top action items for each property.</p>
+  </a>
+  <a class="hub-card" href="Quote Request Log.html">
+    <span class="icon">📋</span>
+    <h3>Quote Request Log</h3>
+    <p>Full correspondence history with all 11 agencies contacted — who's responded, who hasn't, and the next action for each.</p>
+  </a>
+  <a class="hub-card" href="Full Terms Data Bank.html">
+    <span class="icon">🗂️</span>
+    <h3>Full Terms Data Bank</h3>
+    <p>Every coverage line read from the quote PDFs, market/risk context from FEMA and First Street, recommended term changes, visual charts, and exactly what to ask each agent.</p>
+  </a>
+</div>
+
+<h2>Property pages</h2>
+<div class="hub-grid">
+  <a class="hub-card" href="Asher.html">
+    <span class="icon">🏠</span>
+    <h3>Asher</h3>
+    <p>Primary residence. Baseline, all 6 new quotes, premium chart, recommended changes, and agent questions — in one place.</p>
+  </a>
+  <a class="hub-card" href="Cider Mill.html">
+    <span class="icon">🏘️</span>
+    <h3>Cider Mill</h3>
+    <p>Rental (the LLC). Baseline, all 4 new quotes, premium chart, recommended changes, and agent questions.</p>
+  </a>
+  <a class="hub-card" href="Birgham.html">
+    <span class="icon">⚠️</span>
+    <h3>Birgham</h3>
+    <p>Rental (the LLC) — currently uninsured. The 2 options on the table, premium chart, and what to fix before binding.</p>
+  </a>
+</div>
+
+<footer>Generated from Gmail correspondence and Drive documents for this property insurance shopping round. Files live in <code>G:\My Drive\01_Projects\Insurance Quotes\Quotes\</code>.</footer>
+
+</body>
+</html>

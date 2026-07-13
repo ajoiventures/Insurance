@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Birgham — Property Page</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #1a1d23; --muted: #5b6572;
+    --border: #e2e5ea; --accent: #2456d1; --good: #1a8f4c; --warn: #b8790a; --bad: #c23b3b;
+    --head-bg: #eef1f6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#14161a; --card:#1d2025; --text:#e8eaed; --muted:#9aa3af; --border:#30343b; --accent:#7ea2ff; --good:#4fbf7a; --warn:#e0a53a; --bad:#e06868; --head-bg:#24272e; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:32px; background:var(--bg); color:var(--text); font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; line-height:1.5; }
+  h1 { font-size:1.6rem; margin-bottom:4px; }
+  .subtitle { color:var(--muted); margin-bottom:24px; font-size:0.95rem; }
+  h2 { font-size:1.2rem; margin-top:36px; border-bottom:2px solid var(--accent); padding-bottom:6px; }
+  h3 { font-size:1.05rem; margin-top:20px; color:var(--accent); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:20px 24px; margin-bottom:20px; }
+  table { width:100%; border-collapse:collapse; margin:12px 0; font-size:0.88rem; }
+  th, td { text-align:left; padding:7px 9px; border-bottom:1px solid var(--border); vertical-align:top; }
+  th { background:var(--head-bg); font-weight:600; }
+  tr:last-child td { border-bottom:none; }
+  .num { text-align:right; white-space:nowrap; }
+  .wide-table-wrap { overflow-x:auto; }
+  .tag { display:inline-block; padding:2px 8px; border-radius:20px; font-size:0.76rem; font-weight:600; white-space:nowrap; }
+  .tag-good { background:rgba(26,143,76,0.15); color:var(--good); }
+  .tag-warn { background:rgba(184,121,10,0.15); color:var(--warn); }
+  .tag-bad { background:rgba(194,59,59,0.15); color:var(--bad); }
+  .meta { color:var(--muted); font-size:0.83rem; }
+  .pending { color:var(--muted); font-style:italic; }
+  .gap { border-left:3px solid var(--bad); padding:10px 14px; margin:12px 0; background:rgba(194,59,59,0.06); border-radius:0 6px 6px 0; }
+  .missing { border-left:3px solid var(--warn); padding:10px 14px; margin:12px 0; background:rgba(184,121,10,0.06); border-radius:0 6px 6px 0; }
+  .rec { border-left:3px solid var(--good); padding:10px 14px; margin:16px 0; background:rgba(26,143,76,0.07); border-radius:0 6px 6px 0; font-weight:500; }
+  footer { margin-top:36px; color:var(--muted); font-size:0.8rem; }
+  code { background:var(--head-bg); padding:1px 5px; border-radius:4px; font-size:0.85em; }
+
+  .gnav { position:relative; display:flex; align-items:center; gap:12px; margin-bottom:24px; padding:10px 14px; background:var(--card); border:1px solid var(--border); border-radius:10px; }
+  .gnav-brand { font-weight:700; font-size:0.95rem; }
+  .gnav-toggle { display:flex; flex-direction:column; justify-content:center; gap:4px; width:34px; height:34px; background:transparent; border:1px solid var(--border); border-radius:6px; cursor:pointer; padding:7px; }
+  .gnav-toggle span { display:block; height:2px; width:100%; background:var(--text); border-radius:2px; }
+  .gnav-menu { display:none; position:absolute; top:calc(100% + 6px); left:14px; min-width:230px; background:var(--card); border:1px solid var(--border); border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.2); padding:8px; flex-direction:column; gap:2px; z-index:50; }
+  .gnav-menu.open { display:flex; }
+  .gnav-menu a { color:var(--muted); text-decoration:none; padding:8px 12px; border-radius:6px; font-size:0.9rem; font-weight:600; }
+  .gnav-menu a:hover { background:var(--head-bg); color:var(--text); }
+  .gnav-menu a.active { background:rgba(36,86,209,0.15); color:var(--accent); }
+  .gnav-divider { height:1px; background:var(--border); margin:6px 4px; }
+</style>
+</head>
+<body>
+
+<nav class="gnav">
+  <button class="gnav-toggle" aria-label="Toggle navigation" onclick="document.getElementById('gnav-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="gnav-brand">Insurance Quotes</div>
+  <div class="gnav-menu" id="gnav-menu">
+    <a href="index.html">Home</a>
+    <a href="Quote Comparison.html">Quote Comparison</a>
+    <a href="Quote Request Log.html">Request Log</a>
+    <a href="Full Terms Data Bank.html">Full Terms Data Bank</a>
+    <div class="gnav-divider"></div>
+    <a href="Asher.html">Asher</a>
+    <a href="Cider Mill.html">Cider Mill</a>
+    <a href="Birgham.html" class="active">Birgham</a>
+  </div>
+</nav>
+<script>
+document.addEventListener('click', function(e){
+  var nav = document.querySelector('.gnav');
+  var menu = document.getElementById('gnav-menu');
+  if(nav && menu && !nav.contains(e.target)){ menu.classList.remove('open'); }
+});
+</script>
+
+<h1>Birgham</h1>
+<div class="subtitle">Rental · tenant-occupied · owned by the LLC (the co-owners) · <span class="tag tag-bad">uninsured since ~2022</span></div>
+
+<div class="card">
+<h3 style="margin-top:0;">Market &amp; risk snapshot</h3>
+<table>
+<tr><th>FEMA flood zone</th><td>Zone X — minimal hazard, not in a Special Flood Hazard Area <span class="meta">(FEMA NFHL, live lookup)</span></td></tr>
+<tr><th>Flood risk (First Street)</th><td>Minor — 4.6% of Lake Mary properties at risk of flooding, now and in 30 years</td></tr>
+<tr><th>Wind/hurricane risk (First Street)</th><td>Same extreme regional hurricane exposure as greater Orlando</td></tr>
+<tr><th>Market value context</th><td>Neighboring comp: 541 Birgham Pl Zestimate ≈ $387,100 (Zillow, indexed only — exact address blocked)</td></tr>
+<tr><th>Structural facts</th><td>1,784 sq ft, built 1989, 2 story, frame/stucco. <strong>Concrete pool, 500 sq ft screened pool enclosure, attached garage, detached 2-car garage (480 sq ft finished)</strong> — per GeoVera/Cotality underwriting prefill report.</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3 style="margin-top:0;">Current status: uninsured</h3>
+<p>Coverage lapsed around 2022 and has not been renewed. The policy below is <strong>historical reference only</strong>, not an active baseline.</p>
+<table>
+<tr><th>Prior carrier</th><td>Tower Hill Signature Insurance (policy P001947241) — term 8/20/2021–8/20/2022</td></tr>
+<tr><th>Prior annual premium</th><td>$2,242</td></tr>
+<tr><th>Coverage A – Dwelling</th><td>$248,000</td></tr>
+<tr><th>Coverage C – Personal Property</th><td>$10,000</td></tr>
+<tr><th>Coverage D</th><td>$24,800</td></tr>
+<tr><th>Deductibles</th><td>$500 AOP · 2% Hurricane ($4,960)</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3 style="margin-top:0;">All new quotes — full terms</h3>
+<div class="wide-table-wrap">
+<table>
+<tr><th>Term</th><th>Geovera<br><span class="meta">Rigetta</span></th><th>American Integrity (DP1)<br><span class="meta">GreatFlorida</span></th><th>Citizens<br><span class="meta">LIG Specialty</span></th></tr>
+<tr><td><strong>Annual premium</strong></td><td class="num">$3,365</td><td class="num">$1,714.96</td><td class="num">$4,190 <span class="meta">(prelim.)</span></td></tr>
+<tr><td>Dwelling</td><td class="num">$400,000</td><td class="num">$480,000</td><td class="meta">not itemized</td></tr>
+<tr><td>Other Structures</td><td class="num">$8,000</td><td class="num"><strong>$48,000</strong> (10%)</td><td class="meta">not itemized</td></tr>
+<tr><td>Contents</td><td class="num">$20,000 <span class="meta">(carrier minimum)</span></td><td class="tag tag-bad">Excluded (DP1 basic form)</td><td class="meta">not itemized</td></tr>
+<tr><td>Loss of Use</td><td class="num">$40,000</td><td class="num">$48,000 (10%)</td><td class="meta">not itemized</td></tr>
+<tr><td>Liability / Medical</td><td class="num">$300,000 / $2,000</td><td class="num">$300,000 / $2,000</td><td><span class="tag tag-bad">Excluded — corporate-owned</span></td></tr>
+<tr><td>AOP deductible</td><td>$1,000</td><td>$2,500</td><td class="meta">not itemized</td></tr>
+<tr><td>Hurricane deductible</td><td>2%</td><td>$9,600</td><td class="meta">not itemized</td></tr>
+<tr><td>Water damage</td><td><span class="tag tag-bad">Excluded entirely</span></td><td class="meta">not itemized — DP1 basic named-peril form, narrower than Geovera's open-perils DP3</td><td class="meta">unknown</td></tr>
+<tr><td>Law &amp; Ordinance</td><td>25%, RC on contents</td><td>10% of Coverage A</td><td class="meta">unknown</td></tr>
+<tr><td>Carrier admittance</td><td><span class="tag tag-bad">Non-admitted / surplus — not FIGA-backed</span></td><td>Admitted</td><td>Admitted, state-backed</td></tr>
+<tr><td>Fees</td><td><span class="tag tag-bad">Policy/underwriting/inspection fees fully earned (non-refundable)</span></td><td class="meta">standard MGA/EMPAT/FIGA fees only</td><td class="meta">unknown</td></tr>
+<tr><td>Waiting period</td><td class="meta">not stated</td><td class="meta">not stated — large lapse/no-prior-insurance discount applied instead of a wait</td><td><span class="tag tag-warn">30 days (no prior insurance history)</span></td></tr>
+<tr><td>Post-bind inspection</td><td>Exterior/roof inspection</td><td class="meta">not stated</td><td>4-point inspection</td></tr>
+</table>
+</div>
+<div class="gap">Geovera's <strong>$8,000 Other Structures limit</strong> is very unlikely to cover what's actually on this property: a pool, a 500 sq ft screened enclosure, and a detached 2-car garage. American Integrity's $48,000 limit is a much better match for that exposure — but its DP1 "Dwelling Basic" form is a bare-bones named-perils policy that <strong>excludes all personal property</strong>, so it isn't a like-for-like comparison to Geovera's broader DP3 form. A single storm-damaged screened enclosure alone commonly costs $15,000–$30,000 to rebuild in Florida.</div>
+</div>
+
+<div class="card">
+<h3 style="margin-top:0;">Premium comparison</h3>
+<svg viewBox="0 0 680 228" width="100%" style="max-width:680px; font-family:inherit;">
+  <line x1="175" y1="34" x2="175" y2="204" stroke="var(--border)" stroke-width="1"/>
+  <rect x="175" y="40" width="214.3" height="26" fill="var(--muted)" rx="3"/>
+  <text x="170" y="57" text-anchor="end" fill="currentColor" font-size="13">Tower Hill (lapsed 2022)</text>
+  <text x="395" y="57" fill="currentColor" font-size="13" font-weight="600">$2,242</text>
+  <rect x="175" y="82" width="163.9" height="26" fill="var(--accent)" rx="3"/>
+  <text x="170" y="99" text-anchor="end" fill="currentColor" font-size="13">American Integrity</text>
+  <text x="348" y="99" fill="currentColor" font-size="13" font-weight="600">$1,715</text>
+  <rect x="175" y="124" width="321.6" height="26" fill="var(--accent)" rx="3"/>
+  <text x="170" y="141" text-anchor="end" fill="currentColor" font-size="13">Geovera</text>
+  <text x="506" y="141" fill="currentColor" font-size="13" font-weight="600">$3,365</text>
+  <rect x="175" y="166" width="400.4" height="26" fill="var(--warn)" rx="3" stroke="var(--warn)" stroke-dasharray="4 2"/>
+  <text x="170" y="183" text-anchor="end" fill="currentColor" font-size="13">Citizens (prelim.)</text>
+  <text x="585" y="183" fill="currentColor" font-size="13" font-weight="600">$4,190</text>
+</svg>
+<p class="meta">Tower Hill's bar is historical reference (lapsed 2022, different carrier than the Cider Mill quote of the same name) — not an active baseline.</p>
+</div>
+
+<div class="card">
+<h3 style="margin-top:0;">Recommended term changes</h3>
+<table>
+<tr><th>Term</th><th>As quoted</th><th>Target</th></tr>
+<tr><td>Other Structures (Geovera)</td><td>$8,000</td><td><strong>$30,000–$50,000</strong> — reflects the pool, enclosure, and garage on file</td></tr>
+<tr><td>Water damage (Geovera)</td><td>Excluded entirely</td><td>Ask for a <strong>buy-back endorsement</strong>, even at added cost — this home has a known lapse and documented polybutylene plumbing</td></tr>
+<tr><td>Carrier / admittance</td><td>Geovera — non-admitted, surplus lines</td><td>Get Citizens' full itemized terms; ask GreatFlorida whether American Integrity's DP1 form can be upgraded to a broader special-form policy with contents coverage</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3 style="margin-top:0;">Questions to ask</h3>
+<ul>
+<li><strong>Rigetta:</strong> point out the pool/enclosure/garage found in the underwriting prefill report and ask whether the $8,000 Other Structures limit can be raised to actually cover them.</li>
+<li><strong>GreatFlorida (Maria Lasalle):</strong> ask whether American Integrity offers a broader DP3 "special form" option instead of DP1, and what it would cost to add personal property and water-damage coverage.</li>
+<li><strong>LIG Specialty:</strong> request the full itemized policy terms (dwelling, contents, deductibles, water-damage terms) and a firm liability add-on quote (~$500–700/yr estimated); confirm exactly when the 30-day wait starts and ends. Still waiting on this.</li>
+</ul>
+</div>
+
+<div class="rec">This property has been uninsured since 2022 — closing that gap is the priority. You now have three options. <strong>American Integrity ($1,715, via GreatFlorida)</strong> is the cheapest by far and actually solves the Other-Structures underinsurance problem with a $48,000 limit — but its DP1 form excludes personal property entirely, a real coverage-breadth trade-off, not just a price difference. <strong>Geovera ($3,365)</strong> is a broader DP3 form but excludes water damage and is a non-admitted surplus carrier with non-refundable fees. <strong>Citizens ($4,190 + ~$500–700 liability)</strong> is pricier and slower to bind (30-day wait) but is the standard admitted market. Get LIG's full Citizens breakdown and confirm what American Integrity's DP1 form actually excludes before deciding — don't let this run past hurricane season prep without <em>some</em> coverage in place.</div>
+
+<footer>Part of the Insurance Quotes project — see <a href="Full Terms Data Bank.html">Full Terms Data Bank.html</a> for the complete cross-property analysis.</footer>
+
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Insurance Quote Comparison — 3 Properties</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #1a1d23; --muted: #5b6572;
+    --border: #e2e5ea; --accent: #2456d1; --good: #1a8f4c; --warn: #b8790a; --bad: #c23b3b;
+    --head-bg: #eef1f6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#14161a; --card:#1d2025; --text:#e8eaed; --muted:#9aa3af; --border:#30343b; --accent:#7ea2ff; --good:#4fbf7a; --warn:#e0a53a; --bad:#e06868; --head-bg:#24272e; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:32px; background:var(--bg); color:var(--text); font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; line-height:1.5; }
+  h1 { font-size:1.6rem; margin-bottom:4px; }
+  .subtitle { color:var(--muted); margin-bottom:28px; font-size:0.95rem; }
+  h2 { font-size:1.25rem; margin-top:40px; border-bottom:2px solid var(--accent); padding-bottom:6px; }
+  h3 { font-size:1.05rem; margin-top:24px; color:var(--accent); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:20px 24px; margin-bottom:20px; }
+  table { width:100%; border-collapse:collapse; margin:14px 0; font-size:0.92rem; }
+  th, td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--border); vertical-align:top; }
+  th { background:var(--head-bg); font-weight:600; }
+  tr:last-child td { border-bottom:none; }
+  .num { text-align:right; white-space:nowrap; }
+  .tag { display:inline-block; padding:2px 8px; border-radius:20px; font-size:0.78rem; font-weight:600; }
+  .tag-good { background:rgba(26,143,76,0.15); color:var(--good); }
+  .tag-warn { background:rgba(184,121,10,0.15); color:var(--warn); }
+  .tag-bad { background:rgba(194,59,59,0.15); color:var(--bad); }
+  .pending { color:var(--muted); font-style:italic; }
+  .risk { border-left:3px solid var(--warn); padding:10px 14px; margin:12px 0; background:rgba(184,121,10,0.06); border-radius:0 6px 6px 0; }
+  .risk.bad { border-left-color:var(--bad); background:rgba(194,59,59,0.06); }
+  .rec { border-left:3px solid var(--good); padding:10px 14px; margin:16px 0; background:rgba(26,143,76,0.07); border-radius:0 6px 6px 0; font-weight:500; }
+  .meta { color:var(--muted); font-size:0.85rem; }
+  .summary-table td, .summary-table th { font-size:0.95rem; }
+  footer { margin-top:40px; color:var(--muted); font-size:0.8rem; }
+  code { background:var(--head-bg); padding:1px 5px; border-radius:4px; font-size:0.85em; }
+  .gnav { position:relative; display:flex; align-items:center; gap:12px; margin-bottom:24px; padding:10px 14px; background:var(--card); border:1px solid var(--border); border-radius:10px; }
+  .gnav-brand { font-weight:700; font-size:0.95rem; }
+  .gnav-toggle { display:flex; flex-direction:column; justify-content:center; gap:4px; width:34px; height:34px; background:transparent; border:1px solid var(--border); border-radius:6px; cursor:pointer; padding:7px; }
+  .gnav-toggle span { display:block; height:2px; width:100%; background:var(--text); border-radius:2px; }
+  .gnav-menu { display:none; position:absolute; top:calc(100% + 6px); left:14px; min-width:230px; background:var(--card); border:1px solid var(--border); border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.2); padding:8px; flex-direction:column; gap:2px; z-index:50; }
+  .gnav-menu.open { display:flex; }
+  .gnav-menu a { color:var(--muted); text-decoration:none; padding:8px 12px; border-radius:6px; font-size:0.9rem; font-weight:600; }
+  .gnav-menu a:hover { background:var(--head-bg); color:var(--text); }
+  .gnav-menu a.active { background:rgba(36,86,209,0.15); color:var(--accent); }
+  .gnav-divider { height:1px; background:var(--border); margin:6px 4px; }
+</style>
+</head>
+<body>
+
+<nav class="gnav">
+  <button class="gnav-toggle" aria-label="Toggle navigation" onclick="document.getElementById('gnav-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="gnav-brand">Insurance Quotes</div>
+  <div class="gnav-menu" id="gnav-menu">
+    <a href="index.html">Home</a>
+    <a href="Quote Comparison.html" class="active">Quote Comparison</a>
+    <a href="Quote Request Log.html">Request Log</a>
+    <a href="Full Terms Data Bank.html">Full Terms Data Bank</a>
+    <div class="gnav-divider"></div>
+    <a href="Asher.html">Asher</a>
+    <a href="Cider Mill.html">Cider Mill</a>
+    <a href="Birgham.html">Birgham</a>
+  </div>
+</nav>
+<script>
+document.addEventListener('click', function(e){
+  var nav = document.querySelector('.gnav');
+  var menu = document.getElementById('gnav-menu');
+  if(nav && menu && !nav.contains(e.target)){ menu.classList.remove('open'); }
+});
+</script>
+
+<h1>Insurance Quote Comparison</h1>
+<div class="subtitle">3 Florida properties — quotes gathered Jul 8–10, 2026 · report generated Jul 10, 2026</div>
+
+<div class="card">
+<h2 style="margin-top:0; border:none;">Summary — bottom line per property</h2>
+<table class="summary-table">
+<tr><th>Property</th><th>Current status</th><th class="num">Current premium</th><th>Cheapest new quote</th><th>Best-coverage new quote</th><th>Recommendation</th></tr>
+<tr>
+  <td><strong>Asher</strong><br><span class="meta">Orlando · primary residence</span></td>
+  <td><span class="tag tag-warn">Active, up for renewal</span><br><span class="meta">Slide, renews 8/11/26</span></td>
+  <td class="num">$4,660</td>
+  <td>GreatFlorida – Mangrove<br><strong>$2,375</strong></td>
+  <td>Rigetta – Loggerhead<br><strong>$3,894</strong></td>
+  <td>Mangrove is cheapest but no sinkhole selected — confirm terms before leaning on price alone</td>
+</tr>
+<tr>
+  <td><strong>Cider Mill</strong><br><span class="meta">Lake Mary · rental (the LLC)</span></td>
+  <td><span class="tag tag-warn">Active, prior term expired</span><br><span class="meta">Slide, 2023 term</span></td>
+  <td class="num">$5,378</td>
+  <td>GreatFlorida – Tower Hill<br><strong>$1,988</strong></td>
+  <td>Rigetta – Security First<br><strong>$3,586</strong></td>
+  <td>Tower Hill is cheapest but <strong>excludes water damage entirely</strong> — weigh carefully against Orange/Security First</td>
+</tr>
+<tr>
+  <td><strong>Birgham</strong><br><span class="meta">Lake Mary · rental (the LLC)</span></td>
+  <td><span class="tag tag-bad">Uninsured</span><br><span class="meta">Lapsed since ~2022</span></td>
+  <td class="num">—</td>
+  <td>GreatFlorida – American Integrity<br><strong>$1,715</strong></td>
+  <td>Rigetta – Geovera<br><strong>$3,365</strong></td>
+  <td>American Integrity is cheapest but a bare-bones DP1 form excluding all contents — compare carefully against Geovera</td>
+</tr>
+</table>
+<p class="meta">All PDF quotes on file have now been read in full, including a new agency — <strong>GreatFlorida Insurance of Ocoee</strong> (Maria Lasalle) — which turned in the cheapest option on <em>every</em> property via 3 different carriers (Mangrove, Tower Hill, American Integrity), each with a real coverage catch (see tables below). LIG Specialty's <strong>Citizens</strong> premiums are still preliminary/not itemized — still waiting on the full breakdown. See <a href="Full Terms Data Bank.html"><strong>Full Terms Data Bank.html</strong></a> for a complete line-by-line comparison and market-gap write-up. Still pending: Pontell, MIG Florida, IOA USA, Acentria Insurance, Insurance Hut, Carli Insurance Agency, Great Southeastern P&amp;C, The Beacon Insurance Agency.</p>
+</div>
+
+<!-- ================= ASHER ================= -->
+<h2>Asher — Primary Residence</h2>
+
+<div class="card">
+<h3 style="margin-top:0;">Current policy (baseline)</h3>
+<table>
+<tr><th>Carrier</th><td>Slide Insurance (policy SIC3189404) — renewal term 08/11/2026–08/11/2027</td></tr>
+<tr><th>Annual premium</th><td class="num" style="text-align:left;"><strong>$4,660</strong> ($4,587 policy + $73 fees)</td></tr>
+<tr><th>Coverage A – Dwelling</th><td>$417,810</td></tr>
+<tr><th>Coverage B – Other Structures</th><td>$8,356</td></tr>
+<tr><th>Coverage C – Personal Property</th><td>$104,453</td></tr>
+<tr><th>Coverage D – Loss of Use</th><td>$41,781</td></tr>
+<tr><th>Coverage E – Liability / F – Medical</th><td>$300,000 / $1,000</td></tr>
+<tr><th>Deductibles</th><td>$1,000 All Other Perils · 2% Hurricane ($8,356)</td></tr>
+<tr><th>Law & Ordinance</th><td>25% of Coverage A</td></tr>
+<tr><th>Notes</th><td>No flood coverage. No sinkhole coverage.</td></tr>
+</table>
+
+<h3>New quotes</h3>
+<table>
+<tr><th>Carrier / Agent</th><th class="num">Premium</th><th>Dwelling</th><th>Contents</th><th>Loss of Use</th><th>Liability</th><th>Deductibles</th><th>Key terms</th></tr>
+<tr>
+  <td><strong>CORE</strong><br><span class="meta">via Rigetta Insurance</span></td>
+  <td class="num">$3,463</td>
+  <td>$399,000</td>
+  <td>$99,750</td>
+  <td>$39,900</td>
+  <td>$300,000 / $2,000 med</td>
+  <td>$1,000 AOP · 2% Hurricane · 10% Sinkhole</td>
+  <td>25% law & ordinance, RC on contents. Includes <strong>sinkhole coverage</strong> beyond standard cat. ground collapse. <strong>No sublimit on water damage</strong> (burst pipes).</td>
+</tr>
+<tr>
+  <td><strong>Loggerhead</strong><br><span class="meta">via Rigetta Insurance</span></td>
+  <td class="num">$3,894</td>
+  <td>$437,000</td>
+  <td>$109,250</td>
+  <td>$43,700</td>
+  <td>$300,000 / $1,000 med</td>
+  <td>$1,000 AOP · 2% Hurricane</td>
+  <td>25% law & ordinance, RC on contents, $5k sewer backup. Water damage (burst pipes) <strong>capped at $25k</strong>. Paperless carrier.</td>
+</tr>
+<tr>
+  <td><strong>Edison</strong><br><span class="meta">via Sihle Insurance</span></td>
+  <td class="num">$4,523</td>
+  <td>$434,000</td>
+  <td>$108,500</td>
+  <td>$43,400</td>
+  <td>$300,000 / $2,000 med</td>
+  <td>$2,500 AOP · 2% Hurricane</td>
+  <td>25% law &amp; ordinance, RC on contents included free. Water damage <strong>limited to $10k</strong> (discount taken). No sinkhole. Quote discloses the owner did <strong>not get the lowest rate</strong> due to credit-based insurance score factors.</td>
+</tr>
+<tr>
+  <td><strong>Frontline</strong><br><span class="meta">via Sihle Insurance</span></td>
+  <td class="num">$4,265</td>
+  <td>$407,095</td>
+  <td>$203,548 <span class="meta">(~50% of dwelling — double the other quotes)</span></td>
+  <td>$81,419</td>
+  <td>$300,000 / $1,000 med</td>
+  <td>$2,500 AOP · $2,500 Water · 2% Hurricane</td>
+  <td>A+ Demotech rated, BBB accredited. 25% law &amp; ordinance, RC on contents included. <strong>Full water damage coverage, no sublimit</strong> (explicitly "Water Damage Exclusion: No"). No sinkhole. Contents/Loss-of-Use assumptions run ~2x every other Asher quote — worth asking to dial down to match, which should lower the premium.</td>
+</tr>
+<tr>
+  <td><strong>Florida Peninsula</strong><br><span class="meta">via Florida Insurance Group</span></td>
+  <td class="num">$6,014</td>
+  <td>$431,700</td>
+  <td>$215,850 <span class="meta">(~50% of dwelling — double the other quotes)</span></td>
+  <td>$43,170</td>
+  <td>$300,000 / $5,000 med</td>
+  <td>$1,000 AOP · 2% Hurricane</td>
+  <td>Most expensive Asher option by over $1,500/yr, largely driven by the doubled Contents assumption above. Water damage limited to $25k. RC on contents costs <strong>extra</strong> ($665.71, not bundled free like other quotes). No sinkhole. Same credit-score rate penalty disclosure as Edison.</td>
+</tr>
+<tr>
+  <td><strong>Mangrove</strong><br><span class="meta">via GreatFlorida Insurance</span></td>
+  <td class="num">$2,375</td>
+  <td>$349,000</td>
+  <td>$87,250</td>
+  <td>$34,900</td>
+  <td>$300,000 / $1,000 med</td>
+  <td>$2,500 AOP · 2% Hurricane ($6,980)</td>
+  <td><strong>Cheapest Asher option by over $1,000/yr</strong> — dwelling limit is notably lower than every other quote ($349k vs. $399k–$437k elsewhere). Huge wind mitigation discount (–$2,775) drives the low price. Sinkhole coverage was <strong>not selected</strong> (available as an option, not included by default). Limited water damage endorsement present but sublimit not shown on this quote page.</td>
+</tr>
+<tr>
+  <td><strong>Citizens</strong><br><span class="meta">via LIG Specialty</span></td>
+  <td class="num">$3,638</td>
+  <td class="pending">not itemized</td>
+  <td class="pending">not itemized</td>
+  <td class="pending">not itemized</td>
+  <td>Included <span class="meta">(Asher is individually owned, not corporate)</span></td>
+  <td class="pending">not itemized</td>
+  <td><strong>Preliminary indication only</strong> — still waiting on Valerie at LIG Specialty for the full itemized breakdown (dwelling/contents/deductibles/water damage). Final premium depends on application review + required 4-point inspection.</td>
+</tr>
+</table>
+
+<div class="risk">Both Asher quotes from Rigetta require a fresh <strong>wind mitigation</strong> and <strong>4-point inspection</strong> — the existing ones on file are expired/out of the acceptable date range for these carriers. Get these scheduled before binding either option; updated mitigation credits could also lower the price further.</div>
+
+<div class="rec">Recommendation: <strong>Mangrove ($2,375, via GreatFlorida)</strong> is now the cheapest Asher option by a wide margin, but its $349k dwelling limit is meaningfully below every other quote and sinkhole wasn't selected — confirm the water-damage sublimit and consider whether $349k actually covers a full rebuild before leaning on price alone. Among the fully-detailed options, <strong>CORE ($3,463)</strong> remains the strongest value with sinkhole included and no water-damage sublimit. <strong>Frontline ($4,265)</strong> is the closest coverage match (also unlimited water damage, A+ Demotech rated) but costs more, partly because its Contents/Loss-of-Use figures are double what every other carrier assumed. Loggerhead ($3,894) suits a higher $437k dwelling limit if you don't mind the $25k water-damage cap. Edison ($4,523) and Florida Peninsula ($6,014) are dominated on both price and terms by the above.</div>
+</div>
+
+<!-- ================= CIDER MILL ================= -->
+<h2>Cider Mill — Rental (the LLC)</h2>
+
+<div class="card">
+<h3 style="margin-top:0;">Current policy (baseline)</h3>
+<table>
+<tr><th>Carrier</th><td>Slide Insurance (policy SJF1013584) — term 08/03/2023–08/03/2024</td></tr>
+<tr><th>Annual premium</th><td class="num" style="text-align:left;"><strong>$5,378</strong> ($5,245 policy + $133 fees, incl. $44 endorsement)</td></tr>
+<tr><th>Coverage A – Dwelling</th><td>$306,709</td></tr>
+<tr><th>Coverage B – Other Structures</th><td>$6,134 (2% of Cov A)</td></tr>
+<tr><th>Coverage C – Personal Property</th><td>$5,000</td></tr>
+<tr><th>Coverage D – Fair Rental Value</th><td>$30,671</td></tr>
+<tr><th>Coverage E – Additional Living Expense</th><td>$30,671</td></tr>
+<tr><th>Deductibles</th><td>$500 All Other Perils · 2% Hurricane ($6,134)</td></tr>
+<tr><th>Law & Ordinance</th><td>10% of Coverage A</td></tr>
+<tr><th>Notes</th><td>No flood. No sinkhole coverage beyond catastrophic ground cover collapse. Mitigation credit of $1,951.52 applied at this term.</td></tr>
+</table>
+
+<h3>New quotes</h3>
+<table>
+<tr><th>Carrier / Agent</th><th class="num">Premium</th><th>Dwelling</th><th>Contents</th><th>Loss of Use</th><th>Liability</th><th>Deductibles</th><th>Key terms</th></tr>
+<tr>
+  <td><strong>Orange</strong><br><span class="meta">via Rigetta Insurance</span></td>
+  <td class="num">$2,981</td>
+  <td>$376,000</td>
+  <td>$10,000</td>
+  <td>$37,600</td>
+  <td>$300,000 / $5,000 med</td>
+  <td>$1,000 AOP · 2% Hurricane</td>
+  <td>25% law & ordinance. Water damage (burst pipes) capped at $10k. Requires post-bind <strong>self-inspection via phone</strong> (no professional inspector).</td>
+</tr>
+<tr>
+  <td><strong>Security First</strong><br><span class="meta">via Rigetta Insurance</span></td>
+  <td class="num">$3,586</td>
+  <td>$350,000</td>
+  <td>$10,000</td>
+  <td>$35,000</td>
+  <td>$300,000 / $5,000 med</td>
+  <td>$1,000 AOP · 2% Hurricane</td>
+  <td>25% law & ordinance, $5k sewer backup. Water damage capped at $10k. Requires a 4-point inspection.</td>
+</tr>
+<tr>
+  <td><strong>Florida Peninsula (DP3)</strong><br><span class="meta">via Florida Insurance Group</span></td>
+  <td class="num">$3,838</td>
+  <td>$390,900</td>
+  <td>$7,818</td>
+  <td>$39,090</td>
+  <td>$300,000 / $5,000 med</td>
+  <td>$1,000 AOP · 2% Hurricane</td>
+  <td>25% law &amp; ordinance, RC on contents included free. Water damage limited to $25k (better than Orange/Security First's $10k). <strong>Roof coverage capped at a "Stated Value" of $11,600</strong> instead of full replacement cost — a real gap if the roof needs replacing after a covered loss.</td>
+</tr>
+<tr>
+  <td><strong>Tower Hill</strong><br><span class="meta">via GreatFlorida Insurance</span></td>
+  <td class="num">$1,988</td>
+  <td>$399,137</td>
+  <td>$0 <span class="meta">(excluded)</span></td>
+  <td>$39,914</td>
+  <td>$300,000 / $1,000 med</td>
+  <td>$1,000 AOP · 2% Hurricane ($7,983)</td>
+  <td><strong>Cheapest Cider Mill option by nearly $1,000/yr</strong>, and highest dwelling limit of any quote here. But two explicit endorsements confirm real gaps: <strong>"Sinkhole Exclusion — Included"</strong> and <strong>"Water Damage Exclusion — Included"</strong> — water damage is excluded entirely, worse than every other Cider Mill quote's $10k–$25k sublimit. Reciprocal exchange (+$176.70 surplus contribution).</td>
+</tr>
+<tr>
+  <td><strong>Citizens</strong><br><span class="meta">via LIG Specialty</span></td>
+  <td class="num">$3,934</td>
+  <td class="pending">not itemized</td>
+  <td class="pending">not itemized</td>
+  <td class="pending">not itemized</td>
+  <td class="pending"><strong>Not included</strong> — corporate-owned</td>
+  <td class="pending">not itemized</td>
+  <td><strong>Preliminary indication only.</strong> Because Cider Mill is titled under the LLC, Citizens' dwelling policy <strong>excludes personal liability and medical payments</strong> — add ~$500–700/yr for separate liability coverage. Final premium pending application review + 4-point inspection.</td>
+</tr>
+</table>
+
+<div class="risk">The existing 2022 wind mitigation report is <strong>no longer valid</strong> (old roof) — a new inspection is required to confirm credits/discounts for either quote, and could move pricing further in your favor.</div>
+
+<div class="rec">Recommendation: <strong>Tower Hill ($1,988, via GreatFlorida)</strong> is now the cheapest option by a wide margin with the highest dwelling limit ($399,137) — but it's the only Cider Mill quote that <strong>excludes water damage entirely</strong> (confirmed endorsement) as well as sinkhole. That's a meaningful trade for ~$1,000/yr of savings over the next-cheapest option; don't pick it on price alone without weighing that gap. Among quotes that keep some water-damage coverage, <strong>Orange ($2,981)</strong> is the strongest value — nearly $2,400/yr cheaper than the current Slide renewal, with dwelling coverage close to today's. Security First ($3,586) adds sewer backup coverage with a formal 4-point inspection. Florida Peninsula ($3,838) has the best water-damage cap ($25k) among the non-Tower-Hill options, but its "Stated Value" roof limit of $11,600 is a real gap worth confirming first. Citizens ($3,934) is the most expensive once you add back the missing liability coverage.</div>
+</div>
+
+<!-- ================= BIRGHAM ================= -->
+<h2>Birgham — Rental (the LLC)</h2>
+
+<div class="card">
+<h3 style="margin-top:0;">Current status: uninsured</h3>
+<p>Coverage lapsed around 2022 and has not been renewed. Last known policy, shown below, is <strong>historical reference only</strong> — not an active baseline.</p>
+<table>
+<tr><th>Prior carrier</th><td>Tower Hill Signature Insurance (policy P001947241) — term 8/20/2021–8/20/2022</td></tr>
+<tr><th>Prior annual premium</th><td class="num" style="text-align:left;">$2,242</td></tr>
+<tr><th>Coverage A – Dwelling</th><td>$248,000</td></tr>
+<tr><th>Coverage C – Personal Property</th><td>$10,000</td></tr>
+<tr><th>Coverage D</th><td>$24,800</td></tr>
+<tr><th>Deductibles</th><td>$500 All Other Perils · 2% Hurricane ($4,960)</td></tr>
+</table>
+
+<h3>New quotes</h3>
+<table>
+<tr><th>Carrier / Agent</th><th class="num">Premium</th><th>Dwelling</th><th>Contents</th><th>Loss of Use</th><th>Liability</th><th>Deductibles</th><th>Key terms</th></tr>
+<tr>
+  <td><strong>Geovera</strong><br><span class="meta">via Rigetta Insurance</span></td>
+  <td class="num">$3,365</td>
+  <td>$400,000</td>
+  <td>$20,000 <span class="meta">(carrier's minimum)</span></td>
+  <td>$40,000</td>
+  <td>$300,000 / $2,000 med</td>
+  <td>$1,000 AOP · 2% Hurricane</td>
+  <td>25% law &amp; ordinance, RC on contents. <strong>Water damage (burst pipes/accidental discharge) excluded entirely.</strong> Roof is on a payment schedule.</td>
+</tr>
+<tr>
+  <td><strong>American Integrity</strong><br><span class="meta">via GreatFlorida Insurance</span></td>
+  <td class="num">$1,715</td>
+  <td>$480,000</td>
+  <td>$0 <span class="meta">(excluded — DP1 basic form)</span></td>
+  <td>$48,000</td>
+  <td>$300,000 / $2,000 med</td>
+  <td>$2,500 AOP · $9,600 Hurricane</td>
+  <td><strong>Cheapest Birgham option</strong>, highest dwelling limit ($480k), and a strong $48,000 Other Structures limit (10% of dwelling) — actually solves the underinsurance gap flagged for the pool/enclosure/garage. But this is a <strong>"Dwelling Basic" DP1 policy</strong> — a bare-bones named-perils form, not the broader "special form" coverage the other quotes use — and it <strong>excludes personal property entirely</strong>. Large lapse/wind-mitigation discount (–$1,491) drives the low price.</td>
+</tr>
+<tr>
+  <td><strong>Citizens</strong><br><span class="meta">via LIG Specialty</span></td>
+  <td class="num">$4,190</td>
+  <td class="pending">not itemized</td>
+  <td class="pending">not itemized</td>
+  <td class="pending">not itemized</td>
+  <td class="pending"><strong>Not included</strong> — corporate-owned</td>
+  <td class="pending">not itemized</td>
+  <td><strong>Preliminary indication only</strong> — the only market LIG could find given no prior insurance history. Because Birgham is titled under the LLC, Citizens excludes personal liability/medical payments — add ~$500–700/yr separately. <strong>30-day waiting period</strong> before coverage takes effect (no prior insurance history). Final premium pending application review + required 4-point inspection.</td>
+</tr>
+</table>
+
+<div class="risk bad">
+<strong>Elevated risk on Geovera:</strong>
+<ul style="margin:8px 0 0 18px; padding:0;">
+<li>Geovera is a <strong>non-admitted / surplus lines carrier</strong> — not backed by FIGA (Florida's guaranty fund for insolvent insurers). Standard-market protection doesn't apply.</li>
+<li>Policy fees, underwriting fees, and inspection fees are <strong>fully earned</strong> — non-refundable even if the policy is cancelled early.</li>
+<li>Water damage from burst pipes/accidental discharge is <strong>excluded</strong> — a meaningful gap for an older home with prior lapse and (per the 4-point/wind mitigation files) polybutylene plumbing.</li>
+<li>Requires a post-bind exterior/roof inspection; approval isn't guaranteed until that's done.</li>
+<li>Carrier is A-rated by AM Best, and the policy does flag the standard landlord clause that tenant-caused damage liability is reduced — worth requiring renters insurance from your tenant as the carrier suggests.</li>
+</ul>
+</div>
+
+<div class="risk">
+<strong>Citizens caveats:</strong> Citizens is Florida's state-backed insurer of last resort — admitted market, no non-refundable-fee issue like Geovera — but the $4,190 indication is preliminary with no dwelling/contents/deductible breakdown yet, doesn't include liability (~$500–700/yr extra, pushing all-in cost to ~$4,690–4,890), and carries a <strong>30-day wait</strong> before coverage starts. On price alone Geovera ($3,365, liability included) is still cheaper even after that math, but Citizens avoids Geovera's water-damage exclusion and non-admitted status — worth getting the full policy terms before ruling it out.
+</div>
+
+<div class="rec">Recommendation: this property has been uninsured since 2022, so closing that gap is the priority. You now have three concrete options. <strong>American Integrity ($1,715, via GreatFlorida)</strong> is by far the cheapest and actually fixes the Other-Structures underinsurance concern (pool/enclosure/garage) with a $48k limit — but it's a bare-bones DP1 form that excludes personal property entirely, so it's not directly comparable to the other two. <strong>Geovera ($3,365, all-in incl. liability)</strong> is a broader "special form" policy but excludes water damage and is a non-admitted surplus carrier. <strong>Citizens ($4,190 + ~$500–700 liability ≈ $4,690–4,890 all-in)</strong> is the priciest and slowest to bind (30-day wait) but is the standard admitted market. Confirm whether American Integrity's DP1 form can be upgraded/endorsed to cover contents and water damage before treating it as the default — if not, weigh its savings against the narrower coverage. Pontell, MIG Florida, and IOA are still working live quotes that could include Birgham too. Don't let this run past hurricane season prep without <em>some</em> coverage in place.</div>
+</div>
+
+<div class="card">
+<h3 style="margin-top:0;">Data gaps &amp; next steps</h3>
+<ul>
+<li><strong>Florida Insurance Group / Lee Rogers Agency</strong> sent property quotes for <em>both</em> Asher (Florida Peninsula HO3, $6,014.83) and Cider Mill (Florida Peninsula DP3, $3,837.51), not a mixed auto/home batch as first thought — both are now reflected in the tables above. The "RCE.PDF" saved in that folder turned out to be an unrelated Geovera underwriting/prefill report for Birgham (see Full Terms Data Bank for details) — likely filed in the wrong spot, worth double-checking.</li>
+<li><strong>Security First's actual PDF</strong> (Cider Mill) isn't saved to Drive yet — its figures above still come from Ian Corrigan's email body only.</li>
+<li><strong>LIG Specialty's Citizens indications</strong> ($3,638 Asher / $3,934 Cider Mill / $4,190 Birgham) are preliminary premium-only numbers — no dwelling limit, contents, deductible, or exclusion detail yet. Ask Valerie Suarez for the full quote/coverage breakdown before comparing head-to-head with the other options.</li>
+<li><strong>Pontell, MIG Florida, IOA USA, Acentria Insurance</strong> — all have requests in progress with no quotes back yet as of Jul 10. <strong>Insurance Hut</strong> and <strong>Carli Insurance Agency</strong> were cold-emailed on 7/8 and haven't responded at all yet. <strong>AssuredPartners/AJG</strong> (Manuel Espinosa) is out of office through 7/12 and hasn't addressed the 538 Brigham quote request yet.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3 style="margin-top:0;">Top action items before binding anything</h3>
+<ol style="margin:6px 0 0 18px; padding:0;">
+<li>Get updated wind mitigation + 4-point inspections for <strong>Asher and Cider Mill</strong> — nearly every Rigetta quote for those two is contingent on it.</li>
+<li>Ask Sihle (Frontline) and Florida Insurance Group (Florida Peninsula) to <strong>re-quote Asher with Contents at ~25% of dwelling</strong> instead of the ~50% both currently assume — likely lowers both premiums, especially Florida Peninsula's ($6,014.83, the most expensive Asher option).</li>
+<li>Ask Florida Insurance Group what happens if a Cider Mill roof loss <strong>exceeds the $11,600 "Stated Value" roof limit</strong> in their DP3 quote — Orange's competing quote has no such cap.</li>
+<li>Ask Rigetta whether <strong>Geovera's $8,000 Other Structures limit</strong> on Birgham can be raised — the property has a pool, a screened enclosure, and a detached garage per the underwriting prefill report, which $8,000 almost certainly won't cover.</li>
+<li>Get a quote for a <strong>$1M umbrella/excess liability policy</strong> across all 3 properties — every quote so far caps liability at $300k and no agent has proposed one.</li>
+<li>Ask LIG Specialty for the <strong>full itemized Citizens terms</strong> (dwelling, contents, deductibles, water damage, sinkhole) for all 3 properties before comparing head-to-head.</li>
+</ol>
+<p class="meta">Full reasoning behind each of these, plus agent-by-agent question lists, is in <a href="Full Terms Data Bank.html">Full Terms Data Bank.html</a> → "Summary &amp; what to ask each agent."</p>
+</div>
+
+<footer>Generated from Gmail correspondence (Jul 8–10, 2026) and existing declarations in this folder. A daily check is scheduled through Wednesday, Jul 15, 2026 to fold in new quotes as they arrive.</footer>
+
+</body>
+</html>

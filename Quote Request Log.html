@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Insurance Quote Request Log</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #1a1d23; --muted: #5b6572;
+    --border: #e2e5ea; --accent: #2456d1; --good: #1a8f4c; --warn: #b8790a; --bad: #c23b3b;
+    --head-bg: #eef1f6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#14161a; --card:#1d2025; --text:#e8eaed; --muted:#9aa3af; --border:#30343b; --accent:#7ea2ff; --good:#4fbf7a; --warn:#e0a53a; --bad:#e06868; --head-bg:#24272e; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:32px; background:var(--bg); color:var(--text); font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; line-height:1.5; }
+  h1 { font-size:1.6rem; margin-bottom:4px; }
+  .subtitle { color:var(--muted); margin-bottom:28px; font-size:0.95rem; }
+  h2 { font-size:1.15rem; margin-top:36px; border-bottom:2px solid var(--accent); padding-bottom:6px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:20px 24px; margin-bottom:20px; }
+  table { width:100%; border-collapse:collapse; margin:10px 0; font-size:0.9rem; }
+  th, td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--border); vertical-align:top; }
+  th { background:var(--head-bg); font-weight:600; }
+  tr:last-child td { border-bottom:none; }
+  .tag { display:inline-block; padding:2px 9px; border-radius:20px; font-size:0.76rem; font-weight:600; white-space:nowrap; }
+  .tag-good { background:rgba(26,143,76,0.15); color:var(--good); }
+  .tag-warn { background:rgba(184,121,10,0.15); color:var(--warn); }
+  .tag-bad { background:rgba(194,59,59,0.15); color:var(--bad); }
+  .tag-muted { background:rgba(91,101,114,0.15); color:var(--muted); }
+  .meta { color:var(--muted); font-size:0.85rem; }
+  .timeline { margin:0; padding-left:16px; font-size:0.85rem; }
+  .timeline li { margin-bottom:3px; }
+  footer { margin-top:32px; color:var(--muted); font-size:0.8rem; }
+  .summary-row td { font-weight:600; background:var(--head-bg); }
+  .gnav { position:relative; display:flex; align-items:center; gap:12px; margin-bottom:24px; padding:10px 14px; background:var(--card); border:1px solid var(--border); border-radius:10px; }
+  .gnav-brand { font-weight:700; font-size:0.95rem; }
+  .gnav-toggle { display:flex; flex-direction:column; justify-content:center; gap:4px; width:34px; height:34px; background:transparent; border:1px solid var(--border); border-radius:6px; cursor:pointer; padding:7px; }
+  .gnav-toggle span { display:block; height:2px; width:100%; background:var(--text); border-radius:2px; }
+  .gnav-menu { display:none; position:absolute; top:calc(100% + 6px); left:14px; min-width:230px; background:var(--card); border:1px solid var(--border); border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.2); padding:8px; flex-direction:column; gap:2px; z-index:50; }
+  .gnav-menu.open { display:flex; }
+  .gnav-menu a { color:var(--muted); text-decoration:none; padding:8px 12px; border-radius:6px; font-size:0.9rem; font-weight:600; }
+  .gnav-menu a:hover { background:var(--head-bg); color:var(--text); }
+  .gnav-menu a.active { background:rgba(36,86,209,0.15); color:var(--accent); }
+  .gnav-divider { height:1px; background:var(--border); margin:6px 4px; }
+</style>
+</head>
+<body>
+
+<nav class="gnav">
+  <button class="gnav-toggle" aria-label="Toggle navigation" onclick="document.getElementById('gnav-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="gnav-brand">Insurance Quotes</div>
+  <div class="gnav-menu" id="gnav-menu">
+    <a href="index.html">Home</a>
+    <a href="Quote Comparison.html">Quote Comparison</a>
+    <a href="Quote Request Log.html" class="active">Request Log</a>
+    <a href="Full Terms Data Bank.html">Full Terms Data Bank</a>
+    <div class="gnav-divider"></div>
+    <a href="Asher.html">Asher</a>
+    <a href="Cider Mill.html">Cider Mill</a>
+    <a href="Birgham.html">Birgham</a>
+  </div>
+</nav>
+<script>
+document.addEventListener('click', function(e){
+  var nav = document.querySelector('.gnav');
+  var menu = document.getElementById('gnav-menu');
+  if(nav && menu && !nav.contains(e.target)){ menu.classList.remove('open'); }
+});
+</script>
+
+<h1>Insurance Quote Request Log</h1>
+<div class="subtitle">All agencies contacted for the 3-property landlord/homeowners shopping round · updated Jul 10, 2026</div>
+
+<div class="card">
+<h2 style="margin-top:0; border:none;">At a glance</h2>
+<table>
+<tr><th>Status</th><th class="num">Count</th><th>Agencies</th></tr>
+<tr><td><span class="tag tag-good">Quote received</span></td><td>5</td><td>Rigetta Insurance (all 3 properties), Sihle Insurance Group (Asher only), Florida Insurance Group / Lee Rogers Agency (Asher &amp; Cider Mill), <strong>GreatFlorida Insurance of Ocoee (all 3 properties, full terms)</strong>, LIG Specialty (Citizens, all 3 properties — preliminary premiums only, no itemized terms yet — <span class="tag tag-warn">still waiting</span>)</td></tr>
+<tr><td><span class="tag tag-warn">In progress</span></td><td>5</td><td>IOA USA, MIG Florida, Pontell Insurance, Acentria Insurance (Kym to call with follow-up questions), AssuredPartners/AJG</td></tr>
+<tr><td><span class="tag tag-bad">No response</span></td><td>2</td><td>Insurance Hut, Carli Insurance Agency</td></tr>
+<tr><td><span class="tag tag-muted">Sent, awaiting reply</span></td><td>2</td><td>Great Southeastern Property &amp; Casualty, The Beacon Insurance Agency — both cold-emailed 7/10, no response yet</td></tr>
+</table>
+<p class="meta">Note: the scheduled daily check missed its last two runs (7/12, 7/13) — it only fires while the app is open. This update (7/13) was done via a manual sweep instead.</p>
+</div>
+
+<h2>Rigetta Insurance</h2>
+<div class="card">
+<table>
+<tr><th style="width:160px;">Contact</th><td>Steffanie Rigetta &amp; Ian Corrigan — service@rigettainsurance.com / ian@rigettainsurance.com</td></tr>
+<tr><th>Properties</th><td>All 3 (Asher, Cider Mill, Birgham)</td></tr>
+<tr><th>Status</th><td><span class="tag tag-good">Quote received — all 3 properties</span></td></tr>
+<tr><th>Timeline</th><td>
+<ul class="timeline">
+<li>7/8 6:11pm — the owner sent initial landlord quote request (3 properties)</li>
+<li>7/8 8:50pm — Steffanie: needs 4-point/wind mitigation reports for each home</li>
+<li>7/8 9:38pm — the owner clarified ownership (2 rentals via the LLC, 1 primary) and gave details</li>
+<li>7/8 10:15pm — Steffanie: needs more info/docs, estimated 48–72hr turnaround</li>
+<li>7/9 1:02pm — Ian: follow-up requesting additional information</li>
+<li>7/9 4:56pm — the owner sent Asher info via Drive folder link</li>
+<li>7/9 8:08pm — Ian sent full quote breakdown: CORE $3,463 &amp; Loggerhead $3,894 (Asher), Orange $2,981 &amp; Security First $3,586 (Cider Mill), Geovera $3,365 (Birgham) — 5 PDF attachments</li>
+</ul>
+</td></tr>
+<tr><th>Next action</th><td>Get updated wind mitigation/4-point inspections for Asher &amp; Cider Mill (existing ones are expired, flagged by agent as required before binding). See <em>Quote Comparison.html</em> for full analysis.</td></tr>
+</table>
+</div>
+
+<h2>GreatFlorida Insurance of Ocoee</h2>
+<div class="card">
+<table>
+<tr><th style="width:160px;">Contact</th><td>Maria Lasalle / Yahaira Felix (Felix Insurance Agency LLC, dba GreatFlorida Insurance) — Maria.Lasalle@greatflorida.com — (407) 624-5665</td></tr>
+<tr><th>Properties</th><td>All 3 — quoted through 3 different carriers</td></tr>
+<tr><th>Status</th><td><span class="tag tag-good">Quote received — all 3 properties, full terms</span></td></tr>
+<tr><th>Timeline</th><td>
+<ul class="timeline">
+<li class="meta">No prior message found in Gmail for this thread — the owner appears to have contacted this agency directly (phone/in-person), outside of the tracked email outreach.</li>
+<li>7/13 1:35pm — Maria Lasalle sent "Your quotes are ready!" with 3 PDF attachments, one per property, no premium in the email body (standard disclaimer: "premium will depend on inspection reports, insurance score and market conditions")</li>
+<li>7/13 — the owner saved the 3 PDFs to <code>Quotes/Great Florida/</code>; read in full: <strong>Mangrove Property Insurance (HO3)</strong> for Asher, $2,374.95/yr — the cheapest Asher option by over $1,000/yr. <strong>Tower Hill Insurance Exchange (DP3)</strong> for Cider Mill, $1,988.37/yr — cheapest Cider Mill option by nearly $1,000/yr, but <strong>excludes water damage entirely</strong> (confirmed endorsement: "Water Damage Exclusion — Included") and sinkhole. <strong>American Integrity (DP1 "Dwelling Basic")</strong> for Birgham, $1,714.96/yr — cheapest Birgham option, but DP1 is a bare-bones named-peril form and <strong>excludes personal property (contents) entirely</strong>; Other Structures is a strong $48,000 (10% of dwelling) though, well above Geovera's $8,000.</li>
+</ul>
+</td></tr>
+<tr><th>Next action</th><td>All 3 quotes now reflected in Quote Comparison.html, Full Terms Data Bank.html, and the property pages. Confirm with Maria whether the Tower Hill water-damage exclusion and the American Integrity DP1 form's lack of contents coverage can be endorsed back in, and at what cost, before treating these as the default picks.</td></tr>
+</table>
+</div>
+
+<h2>Sihle Insurance Group</h2>
+<div class="card">
+<table>
+<tr><th style="width:160px;">Contact</th><td>Niki Crawford &amp; Jennifer Hackett (writing agent) — info@sihle.com</td></tr>
+<tr><th>Properties</th><td>Asher (quoted); Birgham &amp; Cider Mill (in progress)</td></tr>
+<tr><th>Status</th><td><span class="tag tag-good">Quote received — Asher only</span> &nbsp; <span class="tag tag-warn">Birgham/Cider Mill in progress</span></td></tr>
+<tr><th>Timeline</th><td>
+<ul class="timeline">
+<li>7/8 6:12pm — the owner sent initial landlord quote request (3 properties)</li>
+<li>7/9 2:19pm — Niki: sent rental property quote request form</li>
+<li>7/9 5:02pm — the owner provided Asher details</li>
+<li>7/9 8:23pm — Niki: clarified Asher is HO3 owner-occupied (primary) — confirmed by the owner 9:16pm</li>
+<li>7/10 3:32pm — Niki: assigned Jennifer Hackett as writing agent</li>
+<li>7/10 3:47pm — Niki: separate request for 538 Brigham — needs current declarations + updated 4-point/wind mitigation</li>
+<li>7/10 4:18–6:44pm — the owner &amp; Niki exchanged Drive folder links; Niki found docs only covered Asher, needed same for the 2 rentals</li>
+<li>7/10 6:17pm — Niki: declarations for both rentals are old/not current, working on getting updated inspections</li>
+<li>7/10 7:23pm — Jennifer Hackett sent "Homeowners Quotes" for Asher: <strong>Edison</strong> and <strong>Frontline</strong> options (replacing the Slide policy) — 2 PDF attachments, pricing not yet in the comparison report (needs PDF review)</li>
+</ul>
+</td></tr>
+<tr><th>Next action</th><td>Save Edison/Frontline PDFs to <code>Asher\</code> so pricing can be added to the comparison report. Awaiting updated declarations/inspections before Sihle can quote Birgham and Cider Mill.</td></tr>
+</table>
+</div>
+
+<h2>Florida Insurance Group / Lee Rogers Agency</h2>
+<div class="card">
+<table>
+<tr><th style="width:160px;">Contact</th><td>Gabriel Llanes — admin@floridainsurance.com / gabriell@floridainsurance.com</td></tr>
+<tr><th>Properties</th><td>Asher and Cider Mill — both quoted (Florida Peninsula)</td></tr>
+<tr><th>Status</th><td><span class="tag tag-good">Quotes received — full terms read</span></td></tr>
+<tr><th>Timeline</th><td>
+<ul class="timeline">
+<li>7/8 6:12pm — the owner sent initial landlord quote request (3 properties)</li>
+<li>7/9 4:02pm — Gabriel sent "Quotes" email — 4 PDF attachments</li>
+<li>7/9 4:55pm — the owner sent Asher info via Drive folder link (after the quotes were already sent)</li>
+<li>7/10 — the owner saved the PDFs to Drive; read in full: <strong>"FL Pen Quote.PDF"</strong> is a Florida Peninsula HO3 quote for <strong>Asher</strong>, $6,014.83/yr. <strong>"FL Pen Quote (1).PDF"</strong> is a Florida Peninsula DP3 quote for <strong>Cider Mill</strong> (addressed to the LLC), $3,837.51/yr, with a roof payout capped at an $11,600 "Stated Value" rather than full replacement cost. <strong>"RCE.PDF"</strong> turned out to be an unrelated GeoVera underwriting/prefill report for <strong>Birgham</strong> — not from this agency at all, likely filed in the wrong folder. "progressive quote.PDF" (auto) was not reviewed, out of scope.</li>
+</ul>
+</td></tr>
+<tr><th>Next action</th><td>Both property quotes are now reflected in Quote Comparison.html and Full Terms Data Bank.html. Double-check whether "RCE.PDF" should be moved to the Birgham folder.</td></tr>
+</table>
+</div>
+
+<h2>LIG Specialty</h2>
+<div class="card">
+<table>
+<tr><th style="width:160px;">Contact</th><td>Valerie Suarez — valerie@ligspecialty.com (DBA Laurenza Insurance Group)</td></tr>
+<tr><th>Properties</th><td>All 3 — Citizens premium indications received for Asher, Cider Mill, and Birgham</td></tr>
+<tr><th>Status</th><td><span class="tag tag-good">Quote received — preliminary only, no itemized terms</span></td></tr>
+<tr><th>Timeline</th><td>
+<ul class="timeline">
+<li>7/8 6:12pm — the owner sent initial landlord quote request (3 properties)</li>
+<li>7/8 7:57pm — Auto-response requesting current declarations/wind mitigation info</li>
+<li>7/8 9:27pm — the owner replied with property details</li>
+<li>7/10 6:37pm — Valerie: due to no prior homeowner's insurance, the only market currently available is <strong>Citizens</strong>. Preliminary premium indications: <strong>Asher $3,638</strong>, <strong>Cider Mill $3,934</strong>, <strong>Birgham $4,190</strong>. Corporate-owned properties (Cider Mill, Birgham) exclude personal liability/medical payments under the Citizens dwelling policy — separate liability coverage runs ~$500–700/yr. 30-day waiting period applies (no prior insurance history). Final premium pending application review + required 4-point inspection — no dwelling/contents/deductible breakdown given yet.</li>
+<li>7/10 6:49pm — the owner clarified Birgham is the only uninsured property; Asher &amp; Cider Mill are current</li>
+</ul>
+</td></tr>
+<tr><th>Next action</th><td>Ask Valerie for the itemized policy terms (dwelling limit, deductibles, exclusions) behind each Citizens indication before comparing against the Rigetta quotes.</td></tr>
+</table>
+</div>
+
+<h2>IOA USA (Insurance Office of America)</h2>
+<div class="card">
+<table>
+<tr><th style="width:160px;">Contact</th><td>Mike Cardegnio (responded in place of David Hendrick) — mike.cardegnio@ioausa.com</td></tr>
+<tr><th>Properties</th><td>All 3 (landlord quotes)</td></tr>
+<tr><th>Status</th><td><span class="tag tag-warn">In progress — agent says quotes are back internally, not yet shared</span></td></tr>
+<tr><th>Timeline</th><td>
+<ul class="timeline">
+<li>7/8 6:12pm — the owner sent initial landlord quote request (3 properties, to David Hendrick)</li>
+<li>7/8 8:13pm — Mike Cardegnio responded, requesting property details</li>
+<li>7/8 9:33pm — the owner replied with property details</li>
+<li>7/9 2:55pm — Mike: needs additional insured details for the LLC owners</li>
+<li>7/9 5:05pm — the owner provided the co-owners's info</li>
+<li>7/9 5:56pm — Mike: sent info off for quotes, "already have a few back that I'm waiting on approval for," requested DOBs for both owners</li>
+</ul>
+</td></tr>
+<tr><th>Next action</th><td>Follow up for the quotes Mike says are back but not yet forwarded; confirm he has both owners' DOBs.</td></tr>
+</table>
+</div>
+
+<h2>MIG Florida / Moseley Insurance Group</h2>
+<div class="card">
+<table>
+<tr><th style="width:160px;">Contact</th><td>Julie Gaviria (responded in place of Sean) — Julie@migflorida.com</td></tr>
+<tr><th>Properties</th><td>All 3 (landlord quotes)</td></tr>
+<tr><th>Status</th><td><span class="tag tag-warn">In progress — no quote yet</span></td></tr>
+<tr><th>Timeline</th><td>
+<ul class="timeline">
+<li>7/8 6:12pm — the owner sent initial landlord quote request (to Sean)</li>
+<li>7/8 8:40pm — Julie asked for year of updates (roof/AC/water heater) per property</li>
+<li>7/8 9:35pm — the owner replied with update years for all 3 properties</li>
+</ul>
+</td></tr>
+<tr><th>Next action</th><td>Follow up if no quote arrives in the next few days.</td></tr>
+<tr><th class="meta">Note</th><td class="meta">A prior, unrelated quote from Julie ("Rental quote," Feb 26 2026) exists in Gmail history — outside this 2-week shopping window, not part of this cycle.</td></tr>
+</table>
+</div>
+
+<h2>Pontell Insurance</h2>
+<div class="card">
+<table>
+<tr><th style="width:160px;">Contact</th><td>Christine Marcialis — client-support@pontellinsurance.com</td></tr>
+<tr><th>Properties</th><td>All 3 (referenced as "3 DW FIRE QUOTE RQSTS")</td></tr>
+<tr><th>Status</th><td><span class="tag tag-warn">In progress — awaiting quote after declarations review</span></td></tr>
+<tr><th>Timeline</th><td>
+<ul class="timeline">
+<li>7/8 6:12pm — the owner sent initial landlord quote request (3 properties)</li>
+<li>7/9 8:28pm — Christine requested current declaration pages</li>
+<li>7/9 9:17pm — the owner sent Drive folder link</li>
+</ul>
+</td></tr>
+<tr><th>Next action</th><td>Follow up if no quote arrives in the next few days.</td></tr>
+</table>
+</div>
+
+<h2>Acentria Insurance</h2>
+<div class="card">
+<table>
+<tr><th style="width:160px;">Contact</th><td>Doug Gomber — doug.gomber@acentria.com</td></tr>
+<tr><th>Properties</th><td>All 3 (landlord quotes)</td></tr>
+<tr><th>Status</th><td><span class="tag tag-warn">In progress — no quote yet</span></td></tr>
+<tr><th>Timeline</th><td>
+<ul class="timeline">
+<li>7/8 6:12pm — the owner sent initial landlord quote request (3 properties)</li>
+<li>7/10 12:28am — Doug asked the owner to email the info he'd previously texted (couldn't access on phone)</li>
+<li>7/10 12:55am — the owner sent Drive folder link</li>
+</ul>
+</td></tr>
+<tr><th>Next action</th><td>Follow up if no quote arrives in the next few days.</td></tr>
+</table>
+</div>
+
+<h2>AssuredPartners / AJG</h2>
+<div class="card">
+<table>
+<tr><th style="width:160px;">Contact</th><td>Manuel Espinosa — Manuel.Espinosa@assuredpartners.com / Manuel_Espinosa@ajg.com</td></tr>
+<tr><th>Properties</th><td>538 Brigham Pl specifically (separate, targeted request — not the 3-property blast)</td></tr>
+<tr><th>Status</th><td><span class="tag tag-bad">Stalled — agent out of office until 7/13</span></td></tr>
+<tr><th>Timeline</th><td>
+<ul class="timeline">
+<li>7/2 1:15pm — the owner requested a quote specifically for 538 Brigham, Lake Mary</li>
+<li>7/2 1:29pm — Manuel asked clarifying questions (primary vs. rental, closing date, etc.)</li>
+<li>7/2 1:39–1:42pm — the owner confirmed it's a rental, already owned, ~$440,000 value</li>
+<li>7/2 2:01pm — Manuel asked when the owner closed on the home; recommended a wind mitigation inspection</li>
+<li>7/8 2:44pm — Auto-reply: Manuel out of office 7/6–7/12, returns 7/13</li>
+</ul>
+</td></tr>
+<tr><th>Next action</th><td>Follow up after 7/13 if no response.</td></tr>
+<tr><th class="meta">Note</th><td class="meta">A separate, older "Home Quotes" thread from Manuel (Feb 24, 2026, 2 quote attachments) exists in Gmail history — predates this shopping round and property is unconfirmed; treated as historical reference only, not part of the current comparison.</td></tr>
+</table>
+</div>
+
+<h2>Insurance Hut</h2>
+<div class="card">
+<table>
+<tr><th style="width:160px;">Contact</th><td>Lena Mayo — lena.mayo@yourinsurancehut.com</td></tr>
+<tr><th>Properties</th><td>All 3 (landlord quotes requested)</td></tr>
+<tr><th>Status</th><td><span class="tag tag-bad">No response</span></td></tr>
+<tr><th>Timeline</th><td>
+<ul class="timeline">
+<li>7/8 6:12pm — the owner sent initial landlord quote request (3 properties)</li>
+<li>No reply as of 7/10</li>
+</ul>
+</td></tr>
+<tr><th>Next action</th><td>Consider a follow-up email if no response by early next week.</td></tr>
+</table>
+</div>
+
+<h2>Carli Insurance Agency</h2>
+<div class="card">
+<table>
+<tr><th style="width:160px;">Contact</th><td>Tory — tory@carliagency.com</td></tr>
+<tr><th>Properties</th><td>All 3 (landlord quotes requested)</td></tr>
+<tr><th>Status</th><td><span class="tag tag-bad">No response</span></td></tr>
+<tr><th>Timeline</th><td>
+<ul class="timeline">
+<li>7/8 6:12pm — the owner sent initial landlord quote request (3 properties)</li>
+<li>No reply as of 7/10</li>
+</ul>
+</td></tr>
+<tr><th>Next action</th><td>Consider a follow-up email if no response by early next week.</td></tr>
+</table>
+</div>
+
+<footer>Log built from Gmail correspondence Jul 2–10, 2026. Updated daily through Wednesday, Jul 15, 2026 alongside <em>Quote Comparison.html</em>.</footer>
+
+</body>
+</html>
