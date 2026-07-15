@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Insurance Options — Summary for the Family</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #14171c; --muted: #4d5560;
+    --border: #dde1e7; --accent: #1d4ed8; --good: #157a3f; --warn: #9a5b00; --bad: #b32424;
+    --head-bg: #eef2fb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#14161a; --card:#1d2025; --text:#f1f2f4; --muted:#b7bec8; --border:#33373f; --accent:#8fb0ff; --good:#5fce8e; --warn:#f0b74a; --bad:#f28b8b; --head-bg:#242938; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 40px 24px 80px; background: var(--bg); color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 20px; line-height: 1.6; max-width: 780px; margin-left: auto; margin-right: auto;
+  }
+  h1 { font-size: 2.1rem; line-height: 1.25; margin-bottom: 6px; }
+  .subtitle { color: var(--muted); font-size: 1.05rem; margin-bottom: 8px; }
+  .intro { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 24px 28px; margin: 24px 0 40px; font-size: 1.1rem; }
+  .intro p { margin: 0 0 14px; }
+  .intro p:last-child { margin-bottom: 0; }
+  h2.property-title { font-size: 1.6rem; margin: 0 0 4px; }
+  .property-sub { color: var(--muted); font-size: 1.05rem; margin-bottom: 18px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 28px 30px; margin-bottom: 44px;
+  }
+  .status-badge {
+    display: inline-block; padding: 8px 18px; border-radius: 999px; font-weight: 700;
+    font-size: 1.05rem; margin-bottom: 20px;
+  }
+  .status-good { background: rgba(21,122,63,0.12); color: var(--good); }
+  .status-warn { background: rgba(154,91,0,0.14); color: var(--warn); }
+  .status-bad { background: rgba(179,36,36,0.14); color: var(--bad); }
+  .rec-box {
+    background: var(--head-bg); border: 2px solid var(--accent); border-radius: 14px;
+    padding: 26px 28px; margin: 20px 0;
+  }
+  .rec-label { text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.95rem; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+  .rec-carrier { font-size: 1.5rem; font-weight: 700; margin-bottom: 4px; }
+  .rec-price { font-size: 1.15rem; margin-bottom: 16px; }
+  .rec-price .per-month { color: var(--muted); font-size: 1rem; }
+  .why-list { margin: 0; padding-left: 26px; }
+  .why-list li { margin-bottom: 10px; }
+  .why-list li:last-child { margin-bottom: 0; }
+  .section-label { font-weight: 700; margin: 26px 0 10px; font-size: 1.1rem; }
+  .alt-box { border-left: 4px solid var(--muted); padding: 4px 0 4px 20px; margin: 16px 0; color: var(--text); }
+  .watch-box { border-left: 4px solid var(--warn); padding: 4px 0 4px 20px; margin: 16px 0; }
+  .next-step {
+    background: rgba(29,78,216,0.08); border-radius: 12px; padding: 18px 22px; margin-top: 22px;
+    font-size: 1.05rem;
+  }
+  @media (prefers-color-scheme: dark) { .next-step { background: rgba(143,176,255,0.12); } }
+  .next-step strong { color: var(--accent); }
+  .meta-small { color: var(--muted); font-size: 0.95rem; }
+  footer {
+    margin-top: 50px; padding-top: 24px; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 1rem; text-align: center;
+  }
+  footer a { color: var(--accent); text-decoration: underline; }
+  .print-note { text-align: center; color: var(--muted); font-size: 0.95rem; margin-top: 10px; }
+  @media print {
+    body { font-size: 14pt; }
+    .card { break-inside: avoid; border: 1px solid #999; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Your Insurance Options — Simple Summary</h1>
+<div class="subtitle">Prepared July 15, 2026 · covers all 3 properties</div>
+
+<div class="intro">
+<p>We asked 11 different insurance agencies for quotes on your 3 properties, because your old insurance either got too expensive or ran out. This page gives you our recommendation in plain English for each property — no insurance jargon.</p>
+<p>For each property, we picked the option that gives you the best protection for a fair price — not always the cheapest one, because the cheapest option is sometimes missing important coverage. We explain why below.</p>
+<p><strong>Nothing has been signed or paid for yet.</strong> These are all just quotes. You can ask questions, get more quotes, or choose a different option before deciding.</p>
+</div>
+
+<!-- ================= ASHER ================= -->
+<h2 class="property-title">Asher</h2>
+<div class="property-sub">Your primary home</div>
+<div class="card">
+<span class="status-badge status-warn">Your current policy is due for renewal</span>
+<p>Your home is currently insured, but that policy costs <strong>$4,660 a year</strong> and is coming up for renewal. We found a better option.</p>
+
+<div class="rec-box">
+  <div class="rec-label">Our recommendation</div>
+  <div class="rec-carrier">CORE Insurance (through Rigetta Insurance)</div>
+  <div class="rec-price">$3,463 a year <span class="per-month">(about $289 a month)</span></div>
+  <ul class="why-list">
+    <li>Saves you about <strong>$1,197 a year</strong> compared to your current policy.</li>
+    <li>It's the only option we found that covers <strong>sinkhole damage</strong> — a real risk in this part of Florida — and has <strong>no limit on water damage claims</strong> (like a burst pipe).</li>
+    <li>Almost every other option is either less coverage for a similar price, or a lot more expensive.</li>
+  </ul>
+</div>
+
+<div class="section-label">If you'd rather save more money</div>
+<div class="alt-box">There is a cheaper option — <strong>Mangrove Insurance, $2,375 a year</strong> (about $198/month) — but it covers a smaller rebuild value for the house, and doesn't include sinkhole protection unless you pay about $233 more per year for it.</div>
+
+<div class="section-label">Worth knowing</div>
+<div class="watch-box">Before switching, the agent will need a fresh home inspection (a "4-point" and "wind mitigation" inspection) — this is normal and usually just a short visit from an inspector.</div>
+
+<div class="next-step">📋 <strong>Next step:</strong> Let your agent know you'd like to move forward with CORE, and schedule the home inspection.</div>
+</div>
+
+<!-- ================= CIDER MILL ================= -->
+<h2 class="property-title">Cider Mill</h2>
+<div class="property-sub">Rental property</div>
+<div class="card">
+<span class="status-badge status-warn">Your current policy has expired</span>
+<p>This property's last policy has run out. We found a strong replacement.</p>
+
+<div class="rec-box">
+  <div class="rec-label">Our recommendation</div>
+  <div class="rec-carrier">Florida Peninsula Insurance (through Julie at Moseley Insurance Group)</div>
+  <div class="rec-price">$2,262 a year <span class="per-month">(about $189 a month)</span></div>
+  <ul class="why-list">
+    <li>This is one of the <strong>cheapest options</strong> we found, but unlike the very cheapest one, it still covers <strong>water damage</strong> (like a burst pipe or leak).</li>
+    <li>We noticed this price is much lower than a quote for the exact same insurance company from a different agent (about $3,838/year) — <strong>we're double-checking with Julie why there's such a big difference</strong> before you commit, just to be safe.</li>
+  </ul>
+</div>
+
+<div class="section-label">If you'd rather have the lowest possible price</div>
+<div class="alt-box">The absolute cheapest option is <strong>Tower Hill Insurance, $1,988 a year</strong> (about $166/month) — but it does not cover water damage at all, and does not offer sinkhole coverage. You can add water damage coverage to this one for about $568 more per year if you'd prefer it.</div>
+
+<div class="section-label">Worth knowing</div>
+<div class="watch-box">We're waiting to confirm the price above before you commit — we don't want any surprises once the paperwork is final.</div>
+
+<div class="next-step">📋 <strong>Next step:</strong> Wait for us to confirm the price with Julie, then move forward with Florida Peninsula.</div>
+</div>
+
+<!-- ================= BIRGHAM ================= -->
+<h2 class="property-title">Birgham</h2>
+<div class="property-sub">Rental property</div>
+<div class="card">
+<span class="status-badge status-bad">This property currently has no insurance</span>
+<p>This one has been without insurance since about 2022. Getting this covered is the most urgent of the three.</p>
+
+<div class="rec-box">
+  <div class="rec-label">Our recommendation</div>
+  <div class="rec-carrier">Frontline Insurance (through Manuel at AssuredPartners/AJG)</div>
+  <div class="rec-price">$3,738 a year <span class="per-month">(about $312 a month)</span></div>
+  <ul class="why-list">
+    <li>This gives you the <strong>highest home rebuild coverage</strong> of any quote we received for this property.</li>
+    <li>It still covers <strong>water damage</strong> (many of the other options for this property exclude it).</li>
+    <li>Before signing, we need to double check one thing with Manuel: the paperwork lists the property owner's name slightly differently than expected. This is likely just a small paperwork fix, but it's important to confirm before you sign anything.</li>
+  </ul>
+</div>
+
+<div class="section-label">If you'd rather have the lowest possible price</div>
+<div class="alt-box">The cheapest option is <strong>American Integrity, $1,715 a year</strong> (about $143/month) — a real savings, but this policy does not cover the contents inside the home (furniture, appliances, etc.) unless you add that separately for about $70 more per year.</div>
+
+<div class="section-label">Worth knowing</div>
+<div class="watch-box">This home has been without insurance for several years, so it's important not to delay — Florida's hurricane season is already underway.</div>
+
+<div class="next-step">📋 <strong>Next step:</strong> Confirm the name on the paperwork with Manuel, then move forward with Frontline as soon as possible.</div>
+</div>
+
+<footer>
+<p>This is a simplified summary. If you'd like every detail — the full quotes, all the fine print, and a line-by-line comparison — ask the owner, or see the <a href="index.html">full project pages</a>.</p>
+<p class="print-note">You're welcome to print this page for your records.</p>
+</footer>
+
+</body>
+</html>
